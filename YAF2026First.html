@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>合一・啟航 - YAF 2026首次相聚</title>
+    <style>
+        /* 基礎設定 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft JhengHei', 'Segoe UI', 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        /* A4紙張尺寸設定 */
+        .a4-poster {
+            width: 210mm;
+            height: 297mm;
+            background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 15mm;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+        
+        /* 裝飾元素 */
+        .corner-decoration {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            opacity: 0.1;
+        }
+        
+        .top-left {
+            top: 10px;
+            left: 10px;
+            transform: rotate(0deg);
+        }
+        
+        .top-right {
+            top: 10px;
+            right: 10px;
+            transform: rotate(90deg);
+        }
+        
+        .bottom-left {
+            bottom: 10px;
+            left: 10px;
+            transform: rotate(270deg);
+        }
+        
+        .bottom-right {
+            bottom: 10px;
+            right: 10px;
+            transform: rotate(180deg);
+        }
+        
+        /* 標題區域 */
+        .header {
+            text-align: center;
+            margin-bottom: 12mm;
+            padding-bottom: 8mm;
+            border-bottom: 2px dashed #4a90e2;
+            position: relative;
+        }
+        
+        .main-title {
+            color: #2c3e50;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            letter-spacing: 2px;
+        }
+        
+        .sub-title {
+            color: #4a90e2;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .theme-text {
+            color: #7f8c8d;
+            font-size: 18px;
+            font-style: italic;
+            margin-top: 8px;
+        }
+        
+        /* 主要內容區域 */
+        .content-section {
+            margin-bottom: 10mm;
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 6mm;
+            padding-left: 10px;
+            border-left: 4px solid #4a90e2;
+        }
+        
+        .info-box {
+            background-color: rgba(74, 144, 226, 0.08);
+            border-radius: 10px;
+            padding: 8mm;
+            margin-bottom: 8mm;
+            border-left: 5px solid #4a90e2;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 18px;
+        }
+        
+        .info-icon {
+            margin-right: 12px;
+            font-size: 22px;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .info-text {
+            color: #34495e;
+            font-weight: 500;
+        }
+        
+        /* 流程區域 */
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5mm;
+            margin-bottom: 8mm;
+        }
+        
+        .process-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 6mm 4mm;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            border-top: 3px solid #3498db;
+        }
+        
+        .process-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .process-icon {
+            font-size: 28px;
+            margin-bottom: 4mm;
+            display: block;
+        }
+        
+        .process-text {
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        /* 提醒區域 */
+        .reminder-box {
+            background-color: rgba(52, 152, 219, 0.1);
+            border-radius: 10px;
+            padding: 6mm;
+            margin-bottom: 8mm;
+            border: 1px dashed #3498db;
+        }
+        
+        .reminder-title {
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4mm;
+            display: flex;
+            align-items: center;
+        }
+        
+        .reminder-title::before {
+            content: "💡";
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        
+        .reminder-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 3mm;
+            font-size: 16px;
+            color: #34495e;
+        }
+        
+        .reminder-item::before {
+            content: "•";
+            color: #3498db;
+            font-weight: bold;
+            font-size: 20px;
+            margin-right: 8px;
+        }
+        
+        /* 底部區域 */
+        .footer {
+            text-align: center;
+            margin-top: 10mm;
+            padding-top: 6mm;
+            border-top: 1px solid #eee;
+        }
+        
+        .slogan {
+            color: #e74c3c;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6mm;
+            line-height: 1.4;
+        }
+        
+        .contact-info {
+            color: #7f8c8d;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .emoji {
+            font-size: 24px;
+            vertical-align: middle;
+            margin: 0 4px;
+        }
+        
+        /* 響應式調整 */
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            
+            .a4-poster {
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+            }
+        }
+        
+        @media screen and (max-width: 230mm) {
+            body {
+                padding: 10px;
+            }
+            
+            .a4-poster {
+                transform: scale(0.9);
+                transform-origin: top center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="a4-poster">
+        <!-- 裝飾角落 -->
+        <div class="corner-decoration top-left">✟</div>
+        <div class="corner-decoration top-right">✟</div>
+        <div class="corner-decoration bottom-left">✟</div>
+        <div class="corner-decoration bottom-right">✟</div>
+        
+        <!-- 標題區域 -->
+        <div class="header">
+            <h1 class="main-title">
+                <span class="emoji">🌟</span> 合一・啟航 <span class="emoji">🌟</span>
+            </h1>
+            <h2 class="sub-title">YAF 2026 首次相聚 <span class="emoji">✨</span></h2>
+            <p class="theme-text">兩個群體，一個新家 <span class="emoji">👨‍👩‍👧‍👦</span> 讓我們一起見證神的帶領！</p>
+        </div>
+        
+        <!-- 聚會資訊 -->
+        <div class="content-section">
+            <h3 class="section-title">聚會資訊</h3>
+            <div class="info-box">
+                <div class="info-item">
+                    <div class="info-icon">📅</div>
+                    <div class="info-text">日期：2026年1月9日（星期五）</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">⏰</div>
+                    <div class="info-text">時間：晚上7:30</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-text">地點：西環堂負一層兒童房</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 聚會流程 -->
+        <div class="content-section">
+            <h3 class="section-title">聚會流程與內容</h3>
+            <div class="process-flow">
+                <div class="process-item">
+                    <span class="process-icon">🎵</span>
+                    <div class="process-text">敬拜讚美<br>7:30-7:45</div>
+                </div>
+                <div class="process-item">
+                    <span class="process-icon">🎤</span>
+                    <div class="process-text">破冰互動<br>7:45-8:30</div>
+                </div>
+                <div class="process-item">
+                    <span class="process-icon">🤝</span>
+                    <div class="process-text">合一分享<br>8:30-8:45</div>
+                </div>
+                <div class="process-item">
+                    <span class="process-icon">👥</span>
+                    <div class="process-text">服事團隊介紹<br>8:45-9:00</div>
+                </div>
+                <div class="process-item">
+                    <span class="process-icon">👫</span>
+                    <div class="process-text">小組認識與代禱<br>9:00-9:20</div>
+                </div>
+                <div class="process-item">
+                    <span class="process-icon">🙏</span>
+                    <div class="process-text">禱告結束<br>9:20-9:30</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 溫馨提醒 -->
+        <div class="content-section">
+            <h3 class="section-title">溫馨提醒</h3>
+            <div class="reminder-box">
+                <div class="reminder-title">重要事項</div>
+                <div class="reminder-item">快節奏的香港，忙碌的工作，求神幫助我們預留時間</div>
+                <div class="reminder-item">歡迎大家自由帶食物分享 <span class="emoji">🍰🥤</span></div>
+                <div class="reminder-item">鼓勵大家帶著開放、接納的心前來 <span class="emoji">💖</span></div>
+            </div>
+        </div>
+        
+        <!-- 頁尾 -->
+        <div class="footer">
+            <div class="slogan">
+                一個新的開始，需要你我同在！<span class="emoji">🌈</span><br>
+                讓我們在2026年的起點，攜手見證合一的恩典
+            </div>
+            <div class="contact-info">
+                若有任何查詢，請聯絡 <strong>Ada</strong> 或 <strong>Lulu</strong> <span class="emoji">📱</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 添加簡單的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const processItems = document.querySelectorAll('.process-item');
+            
+            processItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.borderTopColor = '#e74c3c';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.borderTopColor = '#3498db';
+                });
+            });
+            
+            // 列印提示
+            const poster = document.querySelector('.a4-poster');
+            poster.addEventListener('click', function() {
+                console.log('提示：按 Ctrl+P 可列印此海報，或使用瀏覽器截圖功能儲存為PNG');
+            });
+            
+            console.log('A4海報已載入！建議使用瀏覽器列印功能或截圖儲存為高解析度PNG。');
+        });
+    </script>
+</body>
+</html>
